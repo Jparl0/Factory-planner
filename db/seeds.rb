@@ -5,3 +5,18 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+Ore.destroy_all
+ 
+Machine.destroy_all
+User.destroy_all
+
+puts "deleted previous seeds"
+
+# User.create(name: "", username: "")
+
+
+# Machine.create()
+
+
+# Ore.create()
