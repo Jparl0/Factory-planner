@@ -1,19 +1,22 @@
 import React, {useState, useEffect} from "react";
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
-import NavBar from "./NavBar.js";
 import HomePage from "./HomePage.js";
+import CreatePage from "./CreatePage.js"
+import Login from "./Login.js";
 
 function App() {
 
-  useEffect(() => {
-    
-  })
+  const [factoryTree, setFactoryTree] = useState([])
+  // useEffect(() => {
+
+  // })
 
   return (
     <BrowserRouter>
-      <NavBar/>
         <Routes>
             <Route path='/' element={<HomePage />} />
+            <Route path='/CreatePage' element={<CreatePage />} />
+            <Route path='/Login' element={<Login />} />
         </Routes>  
     </BrowserRouter>
 

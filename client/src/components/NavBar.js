@@ -1,21 +1,35 @@
 import React from "react"
-import {BrowserRouter, Routes, Route} from "react-router-dom"
-
-import HomePage from './HomePage'
-import CreatePage from './CreatePage'
-
+// import {useNavigate} from "react-router-dom"
 
     function NavBar (){
 
+        // const [navBarRoute, setNavBarRoute] = useState("");
+        // const navigate = useNavigate();
+
+        // function goToPage(e){
+            // setNavBarRoute(e.target.value)
+            // console.log(navBarRoute)
+            // navigate(`/${navBarRoute}`)
+        // }
 
         return (
-            <BrowserRouter>
-              <Routes>
-                  <Route path='/home' element={<HomePage />} />
-                  <Route path='/create' element={<CreatePage />} />
-
-              </Routes>  
-            </BrowserRouter>
+            <div className="NavBar">
+                <h3>
+                    <a href="http://localhost:4000/">
+                    Home Page
+                    </a>
+                </h3>
+                <h3>
+                    <a href="http://localhost:4000/Login">
+                    Login
+                    </a>
+                </h3>
+                <h3>
+                    <a href="http://localhost:4000/CreatePage">
+                    Create
+                    </a>
+                </h3>
+            </div>
 
 
         )
@@ -23,7 +37,5 @@ import CreatePage from './CreatePage'
 
 
     }
-
-
 
 export default NavBar
