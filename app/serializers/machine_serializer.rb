@@ -1,3 +1,3 @@
 class MachineSerializer < ActiveModel::Serializer
-  attributes :id, :voltage, :output, :input
+  attributes :id, :name, :voltage, :output, :input
 end

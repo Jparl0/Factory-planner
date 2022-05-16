@@ -1,20 +1,54 @@
-import React from 'react'
+import React, {useState} from 'react'
 import NavBar from "./NavBar.js"
 import {useNavigate} from "react-router-dom"
 
-function Login() {
+function Login({currentUser, setCurrentUser}) {
 
     const navigate = useNavigate();
 
-    function goToHome(e){
-        if (e !== null) {
-            navigate(`/`)
+    // const [currentUser, setCurrentUser] = useState(null)
+    // console.log(currentUser)
+
+    const [userToLogin, updateUserToLogin] = useState(
+        {
+            username: "",
+            password: ""
         }
-        else {
-        e.preventDefault();
-        alert("Incorrect Login Credtials. Please try again")
-        }
-        }
+    )
+
+    // console.log(userToLogin)
+
+    function handleUserLoginDataOnChange (e) {
+
+        updateUserToLogin({ ...userToLogin , [e.target.name]: e.target.value})
+
+    }
+
+    function handleLoginSubmit (e) {    
+
+        fetch(`/login`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify( userToLogin )
+        })
+        .then(r => r.json())
+        .then(signedInUser => {
+            setCurrentUser(signedInUser)
+            console.log(currentUser)
+           
+        })
+        navigate('/')
+    }
+
+    // function goToHome(e){
+    //     if (e !== null) {
+    //         navigate(`/`)
+    //     }
+    //     else {
+    //     e.preventDefault();
+    //     alert("Incorrect Login Credtials. Please try again")
+    //     }
+    //     }
 
   return (
 
@@ -23,22 +57,21 @@ function Login() {
             <h1>
                 Login
             </h1>
-            <div>
-                <NavBar/>
-            </div>
+            
         </header>
-        
         <div>
-            <form onSubmit={goToHome}>
+            <NavBar/>
+        </div>
+        <div>
+            <form onSubmit={handleLoginSubmit}>
                 <label >User Name</label>
-                <input type="text" id="usernam" name="username"></input>
+                <input onChange={handleUserLoginDataOnChange} type="text" id="username" name="username"></input>
                 <label >Password</label>
-                <input type="text" id="password" name="password"></input>
+                <input onChange={handleUserLoginDataOnChange} type="password" id="password" name="password"></input>
                 <input className="submit-button" type="submit" value="Submit" />
             </form>
         </div>
     </div>
-
 
   )
 }

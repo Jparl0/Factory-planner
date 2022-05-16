@@ -3,20 +3,31 @@ import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import HomePage from "./HomePage.js";
 import CreatePage from "./CreatePage.js"
 import Login from "./Login.js";
+import MachineList from "./MachineList.js";
 
 function App() {
 
-  const [factoryTree, setFactoryTree] = useState([])
-  // useEffect(() => {
+  // const [factoryTree, setFactoryTree] = useState([])
 
-  // })
+  const [currentUser, setCurrentUser] = useState(false)
+  // console.log(currentUser)
+
+  useEffect((currentUser) => {
+    fetch("/userInSession")
+    .then(r => r.json())
+    .then(userLoggedIn => {
+      setCurrentUser(userLoggedIn)
+      console.log(currentUser)
+    })
+  }, [])
 
   return (
     <BrowserRouter>
         <Routes>
-            <Route path='/' element={<HomePage />} />
+            <Route path='/' element={<HomePage currentUser={currentUser} setCurrentUser={setCurrentUser} />} />
             <Route path='/CreatePage' element={<CreatePage />} />
-            <Route path='/Login' element={<Login />} />
+            <Route path='/Login' element={<Login currentUser={currentUser} setCurrentUser={setCurrentUser}/>} />
+            <Route path='/MachineList' element={<MachineList />} />        
         </Routes>  
     </BrowserRouter>
 

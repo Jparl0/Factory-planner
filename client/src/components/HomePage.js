@@ -2,10 +2,10 @@ import React, {useState} from "react";
 import FactoryTree from "./FactoryTree";
 import NavBar from "./NavBar.js";
 
-    function HomePage (){
+    function HomePage ({currentUser, setCurrentUser}){
 
 
-        const [factoryTree, setFactoryTree] = useState([])
+        // const [factoryTree, setFactoryTree] = useState([])
 
 
         return (
@@ -13,11 +13,10 @@ import NavBar from "./NavBar.js";
             <div className="main-page">
                 <header className="header">
                     <h1>Satis-factory Planner</h1>
-                    <div><NavBar/></div>
                 </header>                 
-                
+                <div><NavBar currentUser={currentUser} setCurrentUser={setCurrentUser}/></div>
                 <div>
-                    <FactoryTree/>
+                    <FactoryTree currentUser={currentUser} setCurrentUser={setCurrentUser}/>
                 </div>
 
             </div>
